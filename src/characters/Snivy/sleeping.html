@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Game Screen</title>
+  <link rel="stylesheet" href="../css/game.css" />
+</head>
+
+<body>
+  <audio src="../resources/room.mp3" id="audio" loop="loop" autoplay="autoplay" type="audio/mpeg"></audio>
+  <div class="topmenu">
+    <span class="span" style="font-size: 30px; cursor: pointer" onclick="disableMute()"><img src="../img/ikon/audio.png"
+        alt="audio" width="20px" /></span>
+  </div>
+  <div class="gamenav">
+    <img class="paw" src="../img/paw.png" alt="paw" />
+    <h1>GotchaLife</h1>
+
+    <div id="container">
+      <div class="bar-container">
+        <div class="bar-ikon">
+          <img src="../img/ikon/eat1.png" alt="ikon" width="26px" />
+        </div>
+        <div class="bar-label">Hunger</div>
+        <div class="bar-wrapper">
+          <div id="eat-bar" class="bar"></div>
+        </div>
+      </div>
+      <div class="bar-container">
+        <div class="bar-ikon">
+          <img src="../img/ikon/sleep.png" alt="ikon" width="26px" />
+        </div>
+        <div class="bar-label">Sleep</div>
+        <div class="bar-wrapper">
+          <div id="sleep-bar" class="bar"></div>
+        </div>
+      </div>
+      <div class="bar-container">
+        <div class="bar-ikon">
+          <img src="../img/ikon/ply.png" alt="ikon" width="26px" />
+        </div>
+        <div class="bar-label">Play</div>
+        <div class="bar-wrapper">
+          <div id="play-bar" class="bar"></div>
+        </div>
+      </div>
+      <div class="bar-container">
+        <div class="bar-ikon">
+          <img src="../img/ikon/medi.jpg" alt="ikon" width="26px" />
+        </div>
+        <div class="bar-label">Health</div>
+        <div class="bar-wrapper">
+          <div id="medicine-bar" class="bar"></div>
+        </div>
+      </div>
+    </div>
+    <img id="image_sleep" src="../img/main_bg/bedroom.jpg" alt="image" width="100%" />
+    <div class="button-container">
+      <img src="../img/ikon/bed.png" alt="bed" width="10%" style="cursor: pointer" id="sleep-btn"
+        onclick="changeImage8()" />
+
+      <div hidden>
+        <button id="eat-btn">Feed</button>
+        <button id="play-btn">Play</button>
+        <button id="medicine-btn">Medicine</button>
+      </div>
+    </div>
+    <a href="game.html">
+      <button class="whitebuttongame">
+        < Game Menu</button></a>
+    <div class="sleeping1">
+      <center>
+        <h2 id="nama_pet"></h2>
+        <img src="../img/character4/shime1.png" alt="sleeping1" width="15%" id="shime1" />
+      </center>
+    </div>
+  </div>
+  <script src="../script/game.js"></script>
+</body>
+
+</html>

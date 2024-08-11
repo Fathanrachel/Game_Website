@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Game Screen</title>
+  <link rel="stylesheet" href="../css/game.css" />
+</head>
+
+<body>
+  <audio src="../resources/game_menu.mp3" id="audio" loop="loop" autoplay="autoplay" type="audio/mpeg"></audio>
+
+  <div id="myNav" class="overlay">
+    <span href="javascript:void(0)" style="cursor: pointer" class="closebtn" onclick="closeNav()">&times;</span>
+    <div class="overlay-content">
+      <span class="span" style="font-size: 30px; cursor: pointer" onclick="enableMute()">Mute Audio</span>
+      <br />
+      <br />
+      <br />
+      <br />
+      <span class="span" style="font-size: 30px; cursor: pointer" onclick="disableMute()">Play Audio</span>
+      <br />
+      <br />
+      <br />
+      <br />
+      <span class="span" style="font-size: 30px; cursor: pointer" onclick="resetBar()">Reset Stats</span>
+      <br />
+      <br />
+      <br />
+      <br />
+      <span class="span" style="font-size: 30px; cursor: pointer" onclick="resetLevel()">Reset Level</span>
+    </div>
+  </div>
+  <div class="topmenu">
+    <span class="span" style="font-size: 30px; cursor: pointer" onclick="openNav()">&#9776;</span>
+
+    <span class="span" style="font-size: 30px; cursor: pointer" onclick="disableMute()"><img src="../img/ikon/audio.png"
+        alt="audio" width="20px" /></span>
+  </div>
+  <div class="gamenav">
+    <img class="paw" src="../img/paw.png" alt="paw" />
+    <h1>GotchaLife</h1>
+
+    <div id="container">
+      <div class="bar-container">
+        <div class="bar-ikon">
+          <img src="../img/ikon/eat1.png" alt="ikon" width="26px" />
+        </div>
+        <div class="bar-label">Hunger</div>
+        <div class="bar-wrapper">
+          <div id="eat-bar" class="bar"></div>
+        </div>
+      </div>
+      <div class="bar-container">
+        <div class="bar-ikon">
+          <img src="../img/ikon/sleep.png" alt="ikon" width="26px" />
+        </div>
+        <div class="bar-label">Sleep</div>
+        <div class="bar-wrapper">
+          <div id="sleep-bar" class="bar"></div>
+        </div>
+      </div>
+      <div class="bar-container">
+        <div class="bar-ikon">
+          <img src="../img/ikon/ply.png" alt="ikon" width="26px" />
+        </div>
+        <div class="bar-label">Play</div>
+        <div class="bar-wrapper">
+          <div id="play-bar" class="bar"></div>
+        </div>
+      </div>
+      <div class="bar-container">
+        <div class="bar-ikon">
+          <img src="../img/ikon/medi.jpg" alt="ikon" width="26px" />
+        </div>
+        <div class="bar-label">Health</div>
+        <div class="bar-wrapper">
+          <div id="medicine-bar" class="bar"></div>
+        </div>
+      </div>
+      <div class="jam">
+        <img src="../img/ikon/clock.png" alt="ikon" width="30px" />
+        <div id="clock"></div>
+      </div>
+      <div id="level"></div>
+      <div id="greeting"></div>
+    </div>
+    <img id="image" src="../../img/main_bg/morning.jpg" alt="image" width="100%" />
+
+    <div>
+      <a href="eating.html"> <button class="whitebutton">Feed</button></a>
+      <a href="sleeping.html"> <button class="whitebutton">Sleep</button></a>
+      <a href="medicine.html">
+        <button class="whitebutton">Medicine</button></a>
+      <a href="play.html"> <button class="whitebutton">Play</button></a>
+    </div>
+    <div hidden>
+      <div class="button-container">
+        <button id="eat-btn">Feed</button>
+        <button id="sleep-btn">Sleep</button>
+        <button id="play-btn">Play</button>
+        <button id="medicine-btn">Medicine</button>
+      </div>
+    </div>
+    <div class="walk1">
+      <center>
+        <h2 id="nama_pet"></h2>
+        <img src="../../img/character2/shime1.png" alt="walk1" width="15%" />
+      </center>
+    </div>
+  </div>
+  <script src="../../js/game.js"></script>
+</body>
+
+</html>

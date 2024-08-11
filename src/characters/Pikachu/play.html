@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>VinciGochi</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../js/game.js" defer></script>
+  <style>
+    #canvas {
+      position: absolute;
+    }
+  </style>
+</head>
+
+<body class="bg-black text-white">
+  <audio src="../../resources/play.mp3" id="audio" loop="loop" autoplay="autoplay" type="audio/mpeg"></audio>
+  <div class="topmenu flex justify-between items-center p-4">
+    <button class="text-2xl cursor-pointer" onclick="disableMute()" tabindex="0"
+      onkeypress="if (event.key === 'Enter') disableMute();">
+      <img src="../../img/ikon/audio.png" alt="audio" class="w-5" />
+    </button>
+  </div>
+
+  <div class="text-center">
+    <h1 id="header" class="text-xl font-bold mb-4">Collect The Star!!</h1>
+    <div id="game"
+      class="relative border border-black bg-cover bg-center bg-no-repeat bg-[url('../../img/rumput.png')] w-full h-96 mb-4">
+      <img id="character" src="../../img/character1/shime1.png" class="absolute w-12 h-12" alt="character"
+        style="top: 175px; left: 175px" />
+      <img id="star" src="../../img/star.png" class="absolute w-12 h-12" alt="star" />
+      <canvas id="canvas" class="absolute inset-0"></canvas>
+    </div>
+
+    <div class="control-row flex justify-center mb-5 ml-36">
+      <button id="up" class="control bg-white text-black w-12 h-12 hover:bg-blue-400 hover:text-white"
+        onclick="moveCharacter('up');" tabindex="0"
+        onkeypress="if (event.key === 'Enter') moveCharacter('up');">Up</button>
+    </div>
+
+    <div class="control-row flex justify-center items-center space-x-4 mb-5">
+      <a id="botan" href="./game.html">
+        <button class="whitebuttongame bg-red-400 text-white w-32 h-12 rounded-full font-semibold hover:bg-blue-400">
+          Game Menu </button>
+      </a>
+      <div class="">
+        <button id="left" class="control bg-white text-black w-12 h-12 hover:bg-blue-400 hover:text-white"
+          onclick="changeImageleft();" tabindex="0"
+          onkeypress="if (event.key === 'Enter') changeImageleft();">Left</button>
+        <button id="down" class="control bg-white text-black w-12 h-12 hover:bg-blue-400 hover:text-white"
+          onclick="moveCharacter('down');" tabindex="0"
+          onkeypress="if (event.key === 'Enter') moveCharacter('down');">Down</button>
+        <button id="right" class="control bg-white text-black w-12 h-12 hover:bg-blue-400 hover:text-white"
+          onclick="changeImageright();" tabindex="0"
+          onkeypress="if (event.key === 'Enter') changeImageright();">Right</button>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VinciGochi</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .text-outline {
+      font-weight: bold;
+      color: white;
+      text-shadow: 1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;
+    }
+
+    @media (min-width: 768px) {
+      #medicine {
+        transform: translate(0%, -180%);
+      }
+    }
+
+    @media (max-width: 768px) {
+      #medicine {
+        transform: translate(0%, -230%);
+      }
+    }
+
+    @media (max-width: 320px) {
+      #medicine {
+        transform: translate(0%, -335%);
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-black text-white font-sans">
+  <audio src="../../resources/medicine.mp3" id="audio" loop autoplay class="hidden"></audio>
+
+  <div class="flex justify-end p-4">
+    <button onclick="disableMute()" class="focus:outline-none">
+      <img src="../../img/ikon/audio.png" alt="Toggle audio" class="w-5 h-5" />
+    </button>
+  </div>
+
+  <div class="text-center h-96">
+    <img src="../../img/paw.png" alt="Paw" class="mx-auto w-16 mb-4">
+    <h1 class="text-2xl md:text-3xl font-bold">VinciGochi</h1>
+
+    <div id="container" class="flex flex-col items-center justify-center h-[40vh] bg-black mt-6">
+      <!-- Bar 1 -->
+      <div class="flex items-center justify-center w-72 mb-4">
+        <img src="../../img/ikon/eat1.png" alt="ikon" class="w-6 mr-4">
+        <div class="w-20 text-right text-lg mr-4">Hunger</div>
+        <div class="w-48 h-5 bg-gray-300 rounded-lg overflow-hidden">
+          <div id="eat-bar" class="bg-blue-500 h-full"></div>
+        </div>
+      </div>
+      <!-- Bar 2 -->
+      <div class="flex items-center justify-center w-72 mb-4">
+        <img src="../../img/ikon/sleep.png" alt="ikon" class="w-6 mr-4">
+        <div class="w-20 text-right text-lg mr-4">Sleep</div>
+        <div class="w-48 h-5 bg-gray-300 rounded-lg overflow-hidden">
+          <div id="sleep-bar" class="bg-purple-700 h-full"></div>
+        </div>
+      </div>
+      <!-- Bar 3 -->
+      <div class="flex items-center justify-center w-72 mb-4">
+        <img src="../../img/ikon/ply.png" alt="ikon" class="w-6 mr-4">
+        <div class="w-20 text-right text-lg mr-4">Play</div>
+        <div class="w-48 h-5 bg-gray-300 rounded-lg overflow-hidden">
+          <div id="play-bar" class="bg-yellow-400 h-full"></div>
+        </div>
+      </div>
+      <!-- Bar 4 -->
+      <div class="flex items-center justify-center w-72 mb-4">
+        <img src="../../img/ikon/medi.jpg" alt="ikon" class="w-6 mr-4">
+        <div class="w-20 text-right text-lg mr-4">Health</div>
+        <div class="w-48 h-5 bg-gray-300 rounded-lg overflow-hidden">
+          <div id="medicine-bar" class="bg-green-500 h-full"></div>
+        </div>
+      </div>
+    </div>
+
+    <img id="image_hospital" src="../../img/main_bg/hospital.jpg" alt="hospital" class="w-full h-auto my-6">
+
+    <div class="flex justify-center mt-4">
+      <button id="medicine-btn" onclick="changeImage()" class="p-2 hover:bg-blue-300 rounded">
+        <img src="../../img/ikon/pill.png" alt="medicine" class="w-10">
+      </button>
+    </div>
+
+    <a href="./game.html" class="mt-6 inline-block">
+      <button class="px-8 py-2 bg-white text-black rounded-full hover:bg-gray-200 transition-all duration-200 md:mb-5">
+        Game Menu
+      </button>
+    </a>
+
+    <div id="medicine" class="mt-6">
+      <h2 id="nama_pet" class="text-outline text-2xl">nama pet</h2>
+      <img id="character" src="../../img/character1/shime1.png" alt="medicine1" class="mx-auto w-1/6">
+    </div>
+  </div>
+
+  <script src="../../js/character1/medicine.js"></script>
+</body>
+
+</html>
