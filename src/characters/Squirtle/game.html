@@ -1,113 +1,167 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-  <title>Game Screen</title>
-  <link rel="stylesheet" href="../css/game.css" />
+  <meta charset="UTF-8">
+  <title>VinciGochi</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .button-container {
+      position: absolute;
+      top: 90rem;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .text-outline {
+      position: relative;
+      font-weight: bold;
+      color: white;
+      text-shadow:
+        1px 1px 0 #000,
+        -1px -1px 0 #000,
+        1px -1px 0 #000,
+        -1px 1px 0 #000;
+    }
+
+    @media (min-width: 768px) {
+
+      /* For tablets and larger screens */
+      .walk1 {
+        transform: translate(-0%, -200%);
+      }
+    }
+
+    @media (max-width: 768px) {
+
+      /* For tablet */
+      .walk1 {
+        transform: translate(-0%, -200%);
+      }
+
+      .button-container {
+        top: 51rem;
+      }
+    }
+
+    @media (max-width: 320px) {
+
+      /* For phones and smaller screens */
+      .walk1 {
+        transform: translate(-0%, -215%);
+      }
+
+      .button-container {
+        top: 49rem;
+      }
+    }
+  </style>
 </head>
 
-<body>
-  <audio src="../resources/game_menu.mp3" id="audio" loop="loop" autoplay="autoplay" type="audio/mpeg"></audio>
-  <div id="myNav" class="overlay">
-    <span href="javascript:void(0)" style="cursor: pointer" class="closebtn" onclick="closeNav()">&times;</span>
-    <div class="overlay-content">
-      <span class="span" style="font-size: 30px; cursor: pointer" onclick="enableMute()">Mute Audio</span>
-      <br />
-      <br />
-      <br />
-      <br />
-      <span class="span" style="font-size: 30px; cursor: pointer" onclick="disableMute()">Play Audio</span>
-      <br />
-      <br />
-      <br />
-      <br />
-      <span class="span" style="font-size: 30px; cursor: pointer" onclick="resetBar()">Reset Stats</span>
-      <br />
-      <br />
-      <br />
-      <br />
-      <span class="span" style="font-size: 30px; cursor: pointer" onclick="resetLevel()">Reset Level</span>
+<body class="bg-black text-white font-sans h-96">
+  <audio src="../../resources/game_menu.mp3" id="audio" loop autoplay class="hidden"></audio>
+
+  <div id="myNav"
+    class="fixed inset-0 bg-black bg-opacity-90 z-50 flex flex-col items-center justify-center transition-all duration-500">
+    <button class="text-6xl mb-12 focus:outline-none" onclick="closeNav()"
+      onkeydown="if (event.key === 'Enter') closeNav();">&times;</button>
+    <div class="flex flex-col items-center space-y-10 hidden" id="button-menu">
+      <button class="text-3xl focus:outline-none" onclick="enableMute()"
+        onkeydown="if (event.key === 'Enter') enableMute();">Mute Audio</button>
+      <button class="text-3xl focus:outline-none" onclick="disableMute()"
+        onkeydown="if (event.key === 'Enter') disableMute();">Play Audio</button>
+      <button class="text-3xl focus:outline-none" onclick="resetBar()"
+        onkeydown="if (event.key === 'Enter') resetBar();">Reset Stats</button>
+      <button class="text-3xl focus:outline-none" onclick="resetLevel()"
+        onkeydown="if (event.key === 'Enter') resetLevel();">Reset Level</button>
     </div>
   </div>
-  <div class="topmenu">
-    <span class="span" style="font-size: 30px; cursor: pointer" onclick="openNav()">&#9776;</span>
 
-    <span class="span" style="font-size: 30px; cursor: pointer" onclick="disableMute()"><img src="../img/ikon/audio.png"
-        alt="audio" width="20px" /></span>
+  <div class="topmenu flex items-center justify-between p-4 bg-black">
+    <button class="text-3xl focus:outline-none" onclick="openNav()">&#9776;</button>
+    <button class="focus:outline-none" onclick="disableMute()">
+      <img src="../../img/ikon/audio.png" alt="audio" class="w-6">
+    </button>
   </div>
-  <div class="gamenav">
-    <img class="paw" src="../img/paw.png" alt="paw" />
-    <h1>GotchaLife</h1>
 
-    <div id="container">
-      <div class="bar-container">
-        <div class="bar-ikon">
-          <img src="../img/ikon/eat1.png" alt="ikon" width="26px" />
-        </div>
-        <div class="bar-label">Hunger</div>
-        <div class="bar-wrapper">
-          <div id="eat-bar" class="bar"></div>
-        </div>
-      </div>
-      <div class="bar-container">
-        <div class="bar-ikon">
-          <img src="../img/ikon/sleep.png" alt="ikon" width="26px" />
-        </div>
-        <div class="bar-label">Sleep</div>
-        <div class="bar-wrapper">
-          <div id="sleep-bar" class="bar"></div>
-        </div>
-      </div>
-      <div class="bar-container">
-        <div class="bar-ikon">
-          <img src="../img/ikon/ply.png" alt="ikon" width="26px" />
-        </div>
-        <div class="bar-label">Play</div>
-        <div class="bar-wrapper">
-          <div id="play-bar" class="bar"></div>
-        </div>
-      </div>
-      <div class="bar-container">
-        <div class="bar-ikon">
-          <img src="../img/ikon/medi.jpg" alt="ikon" width="26px" />
-        </div>
-        <div class="bar-label">Health</div>
-        <div class="bar-wrapper">
-          <div id="medicine-bar" class="bar"></div>
-        </div>
-      </div>
-      <div class="jam">
-        <img src="../img/ikon/clock.png" alt="ikon" width="30px" />
-        <div id="clock"></div>
-      </div>
-      <div id="level"></div>
-      <div id="greeting"></div>
-    </div>
-    <img id="image" src="../img/main_bg/morning.jpg" alt="image" width="100%" />
+  <div class="gamenav flex flex-col items-center text-center space-y-8">
+    <img src="../../img/paw.png" alt="paw" class="w-12 mt-8">
+    <h1 class="text-4xl">VinchiGochi</h1>
 
-    <div>
-      <a href="eating.html"> <button class="whitebutton">Feed</button></a>
-      <a href="sleeping.html"> <button class="whitebutton">Sleep</button></a>
-      <a href="medicine.html">
-        <button class="whitebutton">Medicine</button></a>
-      <a href="play.html"> <button class="whitebutton">Play</button></a>
-    </div>
-    <div hidden>
-      <div class="button-container">
-        <button id="eat-btn">Feed</button>
-        <button id="sleep-btn">Sleep</button>
-        <button id="play-btn">Play</button>
-        <button id="medicine-btn">Medicine</button>
+    <div id="container" class="flex flex-col items-center space-y-8 bg-black h-40">
+      <div class="bar-container flex items-center justify-center w-72">
+        <img src="../../img/ikon/eat1.png" alt="ikon" class="w-6">
+        <div class="bar-label text-right text-lg w-20 mr-4">Hunger</div>
+        <div class="bar-wrapper w-48 h-5 bg-white rounded-lg overflow-hidden">
+          <div id="eat-bar" class="bar h-full bg-blue-500"></div>
+        </div>
+      </div>
+      <div class="bar-container flex items-center justify-center w-72">
+        <img src="../../img/ikon/sleep.png" alt="ikon" class="w-6">
+        <div class="bar-label text-right text-lg w-20 mr-4">Sleep</div>
+        <div class="bar-wrapper w-48 h-5 bg-white rounded-lg overflow-hidden">
+          <div id="sleep-bar" class="bar h-full bg-purple-700"></div>
+        </div>
+      </div>
+      <div class="bar-container flex items-center justify-center w-72">
+        <img src="../../img/ikon/ply.png" alt="ikon" class="w-6">
+        <div class="bar-label text-right text-lg w-20 mr-4">Play</div>
+        <div class="bar-wrapper w-48 h-5 bg-white rounded-lg overflow-hidden">
+          <div id="play-bar" class="bar h-full bg-yellow-400"></div>
+        </div>
+      </div>
+      <div class="bar-container flex items-center justify-center w-72">
+        <img src="../../img/ikon/medi.jpg" alt="ikon" class="w-6">
+        <div class="bar-label text-right text-lg w-20 mr-4">Health</div>
+        <div class="bar-wrapper w-48 h-5 bg-white rounded-lg overflow-hidden">
+          <div id="medicine-bar" class="bar h-full bg-green-500"></div>
+        </div>
       </div>
     </div>
-    <div class="walk1">
-      <center>
-        <h2 id="nama_pet"></h2>
-        <img src="../img/character3/shime1.png" alt="walk1" width="15%" />
-      </center>
+
+    <div class="jam flex items-center pt-11">
+      <img src="../../img/ikon/clock.png" alt="ikon" class="w-8">
+      <div id="clock" class="ml-2 text-2xl font-mono"></div>
+    </div>
+    <div id="level" class="text-2xl font-mono"></div>
+    <div id="greeting" class="text-2xl md:text-4xl font-mono"></div>
+
+    <img id="image" src="../../img/main_bg/morning.jpg" alt="pikachu" class="w-full">
+
+    <div class="button-container flex justify-center space-x-4">
+      <a href="./eating.html">
+        <button class="bg-white text-black rounded-full px-3 py-1 text-sm md:px-5 md:py-2 md:text-base">Eat</button>
+      </a>
+      <a href="./sleeping.html">
+        <button class="bg-white text-black rounded-full px-3 py-1 text-sm md:px-6 md:py-2 md:text-base">Sleep</button>
+      </a>
+      <a href="./medicine.html">
+        <button
+          class="bg-white text-black rounded-full px-3 py-1 text-sm md:px-6 md:py-2 md:text-base">Medicine</button>
+      </a>
+      <a href="./play.html">
+        <button class="bg-white text-black rounded-full px-3 py-1 text-sm md:px-6 md:py-2 md:text-base">Play</button>
+      </a>
     </div>
   </div>
-  <script src="../script/game.js"></script>
+
+  <div class="hidden">
+    <div class="button-container flex justify-center space-x-4">
+      <button id="eat-btn" class="bg-blue-500 text-white rounded-full px-6 py-2">Eat</button>
+      <button id="sleep-btn" class="bg-purple-700 text-white rounded-full px-6 py-2">Sleep</button>
+      <button id="play-btn" class="bg-yellow-400 text-white rounded-full px-6 py-2">Play</button>
+      <button id="medicine-btn" class="bg-green-500 text-white rounded-full px-6 py-2">Medicine</button>
+    </div>
+  </div>
+
+  <div class="walk1 mt-12 text-center">
+    <h2 id="nama_pet" class="text-outline text-xl font-semibold md:text-3xl">pet name</h2>
+    <img src="../../img/character3/shime1.png" alt="Character Walking" class="w-1/6 mx-auto">
+  </div>
+
+  <script src="../../js/clock.js"></script>
+  <script src="../../js/script.js"></script>
 </body>
 
 </html>

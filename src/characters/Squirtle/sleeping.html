@@ -1,81 +1,123 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-  <title>Game Screen</title>
-  <link rel="stylesheet" href="../css/game.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VinciGochi</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .text-outline {
+      position: relative;
+      font-weight: bold;
+      color: white;
+      text-shadow:
+        1px 1px 0 #000,
+        -1px -1px 0 #000,
+        1px -1px 0 #000,
+        -1px 1px 0 #000;
+    }
+
+    @media (min-width: 768px) {
+      #sleep {
+        transform: translate(-0%, -260%);
+      }
+    }
+
+    @media (max-width: 768px) {
+      #sleep {
+        transform: translate(-0%, -280%);
+      }
+    }
+
+    @media (max-width: 320px) {
+      #sleep {
+        transform: translate(-0%, -310%);
+      }
+    }
+  </style>
 </head>
 
-<body>
-  <audio src="../resources/room.mp3" id="audio" loop="loop" autoplay="autoplay" type="audio/mpeg"></audio>
-  <div class="topmenu">
-    <span class="span" style="font-size: 30px; cursor: pointer" onclick="disableMute()"><img src="../img/ikon/audio.png"
-        alt="audio" width="20px" /></span>
+<body class="bg-black text-white font-sans">
+  <audio src="../../resources/room.mp3" id="audio" loop autoplay class="hidden"></audio>
+
+  <div class="flex justify-end p-4">
+    <button onclick="disableMute()" class="focus:outline-none">
+      <img src="../../img/ikon/audio.png" alt="Toggle audio" class="w-5 h-5" />
+    </button>
   </div>
-  <div class="gamenav">
-    <img class="paw" src="../img/paw.png" alt="paw" />
-    <h1>GotchaLife</h1>
 
-    <div id="container">
-      <div class="bar-container">
+  <div class="text-center h-96">
+    <div class="flex flex-col items-center text-center space-y-5">
+      <img class="w-12 mt-8" src="../../img/paw.png" alt="paw" />
+      <h1 class="text-4xl font-bold">VinciGotchi</h1>
+    </div>
+
+    <div id="container" class="flex flex-col items-center justify-center h-[25vh] my-6">
+      <!-- Bar 1 -->
+      <div class="bar-container flex items-center justify-center w-[300px] mb-5">
         <div class="bar-ikon">
-          <img src="../img/ikon/eat1.png" alt="ikon" width="26px" />
+          <img src="../../img/ikon/eat1.png" alt="Hunger icon" class="w-6 mr-4" />
         </div>
-        <div class="bar-label">Hunger</div>
-        <div class="bar-wrapper">
-          <div id="eat-bar" class="bar"></div>
+        <div class="bar-label text-lg text-right mr-5 w-[80px]">Hunger</div>
+        <div class="bar-wrapper w-[200px] h-5 bg-gray-200 rounded-lg overflow-hidden">
+          <div id="eat-bar" class="bg-blue-500 h-full transition-all duration-1000 ease-in-out"></div>
         </div>
       </div>
-      <div class="bar-container">
+      <!-- Bar 2 -->
+      <div class="bar-container flex items-center justify-center w-[300px] mb-5">
         <div class="bar-ikon">
-          <img src="../img/ikon/sleep.png" alt="ikon" width="26px" />
+          <img src="../../img/ikon/sleep.png" alt="Sleep icon" class="w-6 mr-4" />
         </div>
-        <div class="bar-label">Sleep</div>
-        <div class="bar-wrapper">
-          <div id="sleep-bar" class="bar"></div>
+        <div class="bar-label text-lg text-right mr-5 w-[80px]">Sleep</div>
+        <div class="bar-wrapper w-[200px] h-5 bg-gray-200 rounded-lg overflow-hidden">
+          <div id="sleep-bar" class="bg-purple-700 h-full transition-all duration-1000 ease-in-out"></div>
         </div>
       </div>
-      <div class="bar-container">
+      <!-- Bar 3 -->
+      <div class="bar-container flex items-center justify-center w-[300px] mb-5">
         <div class="bar-ikon">
-          <img src="../img/ikon/ply.png" alt="ikon" width="26px" />
+          <img src="../../img/ikon/ply.png" alt="Play icon" class="w-6 mr-4" />
         </div>
-        <div class="bar-label">Play</div>
-        <div class="bar-wrapper">
-          <div id="play-bar" class="bar"></div>
+        <div class="bar-label text-lg text-right mr-5 w-[80px]">Play</div>
+        <div class="bar-wrapper w-[200px] h-5 bg-gray-200 rounded-lg overflow-hidden">
+          <div id="play-bar" class="bg-yellow-400 h-full transition-all duration-1000 ease-in-out"></div>
         </div>
       </div>
-      <div class="bar-container">
+      <!-- Bar 4 -->
+      <div class="bar-container flex items-center justify-center w-[300px] mb-5">
         <div class="bar-ikon">
-          <img src="../img/ikon/medi.jpg" alt="ikon" width="26px" />
+          <img src="../../img/ikon/medi.jpg" alt="Health icon" class="w-6 mr-4" />
         </div>
-        <div class="bar-label">Health</div>
-        <div class="bar-wrapper">
-          <div id="medicine-bar" class="bar"></div>
+        <div class="bar-label text-lg text-right mr-5 w-[80px]">Health</div>
+        <div class="bar-wrapper w-[200px] h-5 bg-gray-200 rounded-lg overflow-hidden">
+          <div id="medicine-bar" class="bg-green-500 h-full transition-all duration-1000 ease-in-out"></div>
         </div>
       </div>
     </div>
-    <img id="image_sleep" src="../img/main_bg/bedroom.jpg" alt="image" width="100%" />
-    <div class="button-container">
-      <img src="../img/ikon/bed.png" alt="bed" width="10%" style="cursor: pointer" id="sleep-btn"
-        onclick="changeImage6()" />
 
-      <div hidden>
-        <button id="eat-btn">Feed</button>
-        <button id="play-btn">Play</button>
-        <button id="medicine-btn">Medicine</button>
-      </div>
+    <img id="image_sleep" src="../../img/main_bg/bedroom.jpg" alt="Bedroom" class="w-full h-auto" />
+
+    <div class="flex justify-center mt-6 space-x-4">
+      <button onclick="changeImage()" class="w-1/6 p-2 hover:bg-blue-300 rounded transition-all duration-200">
+        <img src="../../img/ikon/bed.png" alt="Bed" />
+      </button>
     </div>
+
     <a href="game.html">
-      <button class="whitebuttongame">
-        < Game Menu</button></a>
-    <div class="sleeping1">
-      <center>
-        <h2 id="nama_pet"></h2>
-        <img src="../img/character3/shime1.png" alt="sleeping1" width="15%" id="shime1" />
-      </center>
+      <button
+        class="mt-4 px-6 py-2 bg-white text-black rounded-full hover:bg-gray-200 transition-all duration-200 md:mb-5">
+        Game Menu
+      </button>
+    </a>
+
+    <div id="sleep" class="mt-6">
+      <h2 id="nama_pet" class="text-outline text-2xl">Pet Name</h2>
+      <img id="character" src="../../img/character3/shime1.png" alt="Character" class="w-1/6 mx-auto" />
     </div>
   </div>
-  <script src="../script/game.js"></script>
+
+  <script src="../../js/character3/sleep.js"></script>
 </body>
 
 </html>

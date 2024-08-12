@@ -31,11 +31,8 @@ let img = document.getElementById("character");
 // document.getElementById("character").src = gambar;
 
 // Animation for eating and sleeping
-let originalImage = "../../img/character1/shime1.png";
-let newImage = "../../img/character1/shime32.png";
-
-let originalImage8 = "../img/character4/shime1.png";
-let newImage8 = "../img/character4/shime11c.png";
+let originalImage = "../../img/character3/shime1.png";
+let newImage = "../../img/character3/shime35.png";
 
 // Update the game state every second
 setInterval(function () {
@@ -78,69 +75,6 @@ function eat() {
 
 function revertImage() {
   img.src = originalImage;
-}
-
-function changeImage2() {
-  img.src = newImage2;
-  setTimeout(revertImage, 5000);
-}
-
-function revertImage2() {
-  img.src = originalImage2;
-}
-
-function changeImage3() {
-  img.src = newImage3;
-  setTimeout(revertImage3, 3000);
-}
-
-function revertImage3() {
-  img.src = originalImage3;
-}
-
-function changeImage4() {
-  img.src = newImage4;
-  setTimeout(revertImage4, 5000);
-}
-
-function revertImage4() {
-  img.src = originalImage4;
-}
-
-function changeImage5() {
-  img.src = newImage5;
-  setTimeout(revertImage5, 3000);
-}
-
-function revertImage5() {
-  img.src = originalImage5;
-}
-
-function changeImage6() {
-  img.src = newImage6;
-  setTimeout(revertImage6, 5000);
-}
-
-function revertImage6() {
-  img.src = originalImage6;
-}
-
-function changeImage7() {
-  img.src = newImage7;
-  setTimeout(revertImage7, 3000);
-}
-
-function revertImage7() {
-  img.src = originalImage7;
-}
-
-function changeImage8() {
-  img.src = newImage8;
-  setTimeout(revertImage8, 5000);
-}
-
-function revertImage8() {
-  img.src = originalImage8;
 }
 
 // FUNCTIONS
