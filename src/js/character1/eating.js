@@ -14,7 +14,7 @@ function updateBars() {
 
   if (Lose > 0) {
     alert("You Lose!");
-    window.location.href = "../../index.html";
+    window.location.href = "/index.html";
   }
 }
 
@@ -34,18 +34,6 @@ let img = document.getElementById("character");
 let originalImage = "../../img/character1/shime1.png";
 let newImage = "../../img/character1/shime32.png";
 
-let originalImage2 = "../img/character1/shime1.png";
-let newImage2 = "../img/character1/shime21.png";
-let originalImage3 = "../img/character2/shime1.png";
-let newImage3 = "../img/character2/shime45.png";
-let originalImage4 = "../img/character2/shime1.png";
-let newImage4 = "../img/character2/shime21.png";
-let originalImage5 = "../img/character3/shime1.png";
-let newImage5 = "../img/character3/shime35.png";
-let originalImage6 = "../img/character3/shime1.png";
-let newImage6 = "../img/character3/shime21.png";
-let originalImage7 = "../img/character4/shime1.png";
-let newImage7 = "../img/character4/shime11e.png";
 let originalImage8 = "../img/character4/shime1.png";
 let newImage8 = "../img/character4/shime11c.png";
 

@@ -29,8 +29,8 @@ document.getElementById("nama_pet").innerHTML = nama;
 let img = document.getElementById("character");
 
 // Animation for eating and sleeping
-const originalImage = "../../img/character1/shime1.png";
-const newImage = "../../img/character1/shime45.png";
+const originalImage = "../../img/character3/shime1.png";
+const newImage = "../../img/character3/shime21.png";
 
 // Update the game state every second
 setInterval(function () {
@@ -54,28 +54,31 @@ function revertImage() {
 
 async function changeImage() {
   img.src = newImage;
-  await delay(3000);
-  medicine();
+  await delay(5000);
+  sleep();
   revertImage();
 }
 
-function medicine() {
-  medicineBar += 10;
+function sleep() {
+  eatBar -= 10;
+  if (eatBar < 0) {
+    eatBar = 0;
+  }
+  sleepBar += 10;
+  if (sleepBar > 100) {
+    sleepBar = 100;
+  }
+  medicineBar += 5;
   if (medicineBar > 100) {
     medicineBar = 100;
   }
-
-  playBar -= 10;
+  playBar -= 5;
   if (playBar < 0) {
     playBar = 0;
   }
 
-  sleepBar -= 10;
-  if (sleepBar < 0) {
-    sleepBar = 0;
-  }
-
   // save to session storage
+  sessionStorage.setItem("eatBar", eatBar.toString());
   sessionStorage.setItem("sleepBar", sleepBar.toString());
   sessionStorage.setItem("medicineBar", medicineBar.toString());
   sessionStorage.setItem("playBar", playBar.toString());

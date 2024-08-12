@@ -29,8 +29,8 @@ document.getElementById("nama_pet").innerHTML = nama;
 let img = document.getElementById("character");
 
 // Animation for eating and sleeping
-const originalImage = "../../img/character1/shime1.png";
-const newImage = "../../img/character1/shime45.png";
+const originalImage = "../../img/character3/shime1.png";
+const newImage = "../../img/character3/shime11.png";
 
 // Update the game state every second
 setInterval(function () {
