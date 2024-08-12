@@ -1,0 +1,32 @@
+{
+  "theme_color": "#4c34c3",
+  "background_color": "#8435f6",
+  "display": "standalone",
+  "scope": "/",
+  "start_url": "/index.html",
+  "name": "Vinci Gochi",
+  "short_name": "VG",
+  "description": "Vinchi Gochi App",
+  "icons": [
+    {
+      "src": "/src/img/paw.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/src/img/paw.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    },
+    {
+      "src": "/src/img/paw.png",
+      "sizes": "384x384",
+      "type": "image/png"
+    },
+    {
+      "src": "/src/img/paw.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
