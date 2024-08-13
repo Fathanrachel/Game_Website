@@ -1,291 +1,60 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Catch The Star</title>
-    <style>
-      #character {
-        width: 50px;
-        height: 50px;
-        position: absolute;
-      }
+<html lang="en">
 
-      .control-row {
-        display: flex;
-        justify-content: center;
-        color: white;
-      }
-      .control {
-        margin: 0 10px;
-        color: white;
-        background-color: black;
-      }
-      #up {
-        margin-bottom: 10px;
-        color: white;
-        background-color: black;
-      }
-      #down {
-        margin-top: 10px;
-        color: white;
-        background-color: black;
-      }
-      canvas {
-        position: absolute;
-      }
+<head>
+  <title>VinciGochi</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../js/character4/game.js" defer></script>
+  <style>
+    #canvas {
+      position: absolute;
+    }
+  </style>
+</head>
 
-      #game {
-        width: 100%;
-        height: 600px;
-        border: 1px solid black;
-        background-image: url(../img/rumput.png);
-        position: relative;
-        margin-bottom: 15px;
-      }
+<body class="bg-black text-white">
+  <audio src="../../resources/play.mp3" id="audio" loop="loop" autoplay="autoplay" type="audio/mpeg"></audio>
+  <div class="topmenu flex justify-between items-center p-4">
+    <button class="text-2xl cursor-pointer" onclick="disableMute()" tabindex="0"
+      onkeypress="if (event.key === 'Enter') disableMute();">
+      <img src="../../img/ikon/audio.png" alt="audio" class="w-5" />
+    </button>
+  </div>
 
-      #star {
-        width: 50px;
-        height: 50px;
-        position: absolute;
-      }
-
-      #header {
-        color: white;
-        font-family: "Arial Narrow", Arial, sans-serif;
-        font-size: x-large;
-        text-align: center;
-      }
-
-      html {
-        background-color: black;
-      }
-
-      .whitebuttongame {
-        background-color: white;
-        color: black;
-        width: 100px;
-        height: 50px;
-        border-radius: 30px;
-        width: 200px;
-        font-size: 20px;
-      }
-
-      .whitebuttongame:hover {
-        background-color: #00bfff;
-      }
-
-      #botan {
-        margin-right: 150px;
-      }
-
-      #up {
-        margin-left: 360px;
-        width: 50px;
-        background-color: white;
-        color: black;
-        height: 50px;
-      }
-
-      #down {
-        width: 50px;
-        background-color: white;
-        color: black;
-        margin-top: 0px;
-      }
-
-      #left {
-        background-color: white;
-        color: black;
-        width: 50px;
-        margin-right: 0px;
-      }
-
-      #right {
-        background-color: white;
-        color: black;
-        width: 50px;
-        margin-left: 0px;
-      }
-
-      #up:hover {
-        background-color: #00bfff;
-        color: #fff;
-      }
-
-      #down:hover {
-        background-color: #00bfff;
-        color: #fff;
-      }
-
-      #left:hover {
-        background-color: #00bfff;
-        color: #fff;
-      }
-
-      #right:hover {
-        background-color: #00bfff;
-        color: #fff;
-      }
-    </style>
-  </head>
-  <body>
-    <audio
-      src="../resources/play.mp3"
-      id="audio"
-      loop="loop"
-      autoplay="autoplay"
-      type="audio/mpeg"
-    ></audio>
-    <div class="topmenu">
-      <span
-        class="span"
-        style="font-size: 30px; cursor: pointer"
-        onclick="disableMute()"
-        ><img src="../img/ikon/audio.png" alt="audio" width="20px"
-      /></span>
-    </div>
-    <div>
-      <h1 id="header">Collect The Star!!</h1>
-      <div id="game">
-        <img
-          id="character"
-          src="../img/character4/shime1.png"
-          style="top: 175px; left: 175px"
-        />
-        <img id="star" src="../img/star.png" />
-        <canvas id="canvas"></canvas>
-      </div>
-      <div class="control-row">
-        <button id="up" class="control">Up</button>
-      </div>
-      <div class="control-row">
-        <a id="botan" href="game.html">
-          <button class="whitebuttongame">< Game Menu</button></a
-        >
-        <button id="left" class="control" onclick="changeImageleft();">
-          Left
-        </button>
-        <button id="down" class="control">Down</button>
-        <button id="right" class="control" onclick="changeImageright();">
-          Right
-        </button>
-      </div>
+  <div class="text-center">
+    <h1 id="header" class="text-xl font-bold mb-4">Collect The Star!!</h1>
+    <div id="game"
+      class="relative border border-black bg-cover bg-center bg-no-repeat bg-[url('../../img/rumput.png')] w-full h-96 mb-4">
+      <img id="character" src="../../img/character4/shime1.png" class="absolute w-12 h-12" alt="character"
+        style="top: 175px; left: 175px" />
+      <img id="star" src="../../img/star.png" class="absolute w-12 h-12" alt="star" />
+      <canvas id="canvas" class="absolute inset-0"></canvas>
     </div>
 
-    <script>
-      let player = document.getElementById("character");
-      let gameStar = document.getElementById("star");
-      let starCollected = false;
-      let canvas = document.getElementById("canvas");
-      let ctx = canvas.getContext("2d");
+    <div class="control-row flex justify-center mb-5 ml-36">
+      <button id="up" class="control bg-white text-black w-12 h-12 hover:bg-blue-400 hover:text-white"
+        onclick="moveCharacter('up');" tabindex="0"
+        onkeypress="if (event.key === 'Enter') moveCharacter('up');">Up</button>
+    </div>
 
-      //Random position star
-      function moveGameStar() {
-        let x = Math.random() * 900;
-        let y = Math.random() * 500;
-        gameStar.style.left = x + "px";
-        gameStar.style.top = y + "px";
-        drawLine();
-      }
+    <div class="control-row flex justify-center items-center space-x-4 mb-5">
+      <a id="botan" href="./game.html">
+        <button class="whitebuttongame bg-red-400 text-white w-32 h-12 rounded-full font-semibold hover:bg-blue-400">
+          Game Menu </button>
+      </a>
+      <div class="">
+        <button id="left" class="control bg-white text-black w-12 h-12 hover:bg-blue-400 hover:text-white"
+          onclick="changeImageleft();" tabindex="0"
+          onkeypress="if (event.key === 'Enter') changeImageleft();">Left</button>
+        <button id="down" class="control bg-white text-black w-12 h-12 hover:bg-blue-400 hover:text-white"
+          onclick="moveCharacter('down');" tabindex="0"
+          onkeypress="if (event.key === 'Enter') moveCharacter('down');">Down</button>
+        <button id="right" class="control bg-white text-black w-12 h-12 hover:bg-blue-400 hover:text-white"
+          onclick="changeImageright();" tabindex="0"
+          onkeypress="if (event.key === 'Enter') changeImageright();">Right</button>
+      </div>
+    </div>
+  </div>
+</body>
 
-      // Draw a line connecting the character and the star
-      function drawLine() {
-        let playerRect = player.getBoundingClientRect();
-        let starRect = gameStar.getBoundingClientRect();
-        let playerX = playerRect.left + playerRect.width / 2;
-        let playerY = playerRect.top + playerRect.height / 2;
-        let starX = starRect.left + starRect.width / 2;
-        let starY = starRect.top + starRect.height / 2;
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.beginPath();
-        ctx.moveTo(playerX, playerY);
-        ctx.lineTo(starX, starY);
-        ctx.strokeStyle = "black";
-        ctx.stroke();
-      }
-
-      // Check if star has catched
-      function checkGetStar() {
-        let playerRect = player.getBoundingClientRect();
-        let starRect = gameStar.getBoundingClientRect();
-        if (
-          playerRect.left < starRect.right &&
-          playerRect.right > starRect.left &&
-          playerRect.top < starRect.bottom &&
-          playerRect.bottom > starRect.top
-        ) {
-          starCollected = true;
-          alert("You collected the star!!");
-          // back to main game
-          playBar = parseInt(sessionStorage.getItem("playBar"));
-          medicineBar = parseInt(sessionStorage.getItem("medicineBar"));
-
-          playBar += 10;
-          if (playBar > 100) {
-            playBar = 100;
-          }
-          medicineBar -= 5; // Decrease medicine bar when play bar increases
-          if (medicineBar < 0) {
-            medicineBar = 0;
-          }
-
-          sessionStorage.setItem("playBar", playBar.toString());
-          sessionStorage.setItem("medicineBar", medicineBar.toString());
-
-          window.location.href = "game.html";
-        }
-      }
-
-      // Move the character in response to button clicks
-      document.getElementById("left").addEventListener("click", function () {
-        console.log("Kiri");
-        if (starCollected) return; //cek apakah bintang sudah tertangkap
-        let left = parseInt(player.style.left);
-        character.style.left = Math.max(left - 25, 0) + "px";
-        checkGetStar();
-      });
-
-      document.getElementById("down").addEventListener("click", function () {
-        console.log("Bawah");
-        if (starCollected) return; //cek apakah bintang sudah tertangkap
-        let top = parseInt(player.style.top);
-        character.style.top = Math.min(top + 25, 550) + "px";
-        checkGetStar();
-      });
-
-      document.getElementById("right").addEventListener("click", function () {
-        console.log("Kanan");
-        if (starCollected) return; //cek apakah bintang sudah tertangkap
-        let left = parseInt(player.style.left);
-        character.style.left = Math.min(left + 25, 1050) + "px";
-        checkGetStar();
-      });
-
-      document.getElementById("up").addEventListener("click", function () {
-        console.log("Atas");
-        if (starCollected) return; //cek apakah bintang sudah tertangkap
-        let top = parseInt(player.style.top);
-        character.style.top = Math.max(top - 25, 0) + "px";
-        checkGetStar();
-      });
-
-      moveGameStar();
-
-      //makes character face right when pressed right
-      function changeImageright() {
-        var img = document.getElementById("character");
-        img.src = "../img/character4/shime1right.png";
-        return false;
-      }
-
-      //makes character face left when pressed left
-      function changeImageleft() {
-        var img = document.getElementById("character");
-        img.src = "../img/character4/shime1.png";
-        return false;
-      }
-      function disableMute() {
-        document.getElementById("audio").play();
-      }
-    </script>
-  </body>
 </html>
