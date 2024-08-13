@@ -1,86 +1,151 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-  <title>Game Screen</title>
-  <link rel="stylesheet" href="../css/game.css" />
+  <meta charset="UTF-8">
+  <title>VinchiGochi</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .button-container {
+      position: absolute;
+      top: 83rem;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .text-outline {
+      position: relative;
+      font-weight: bold;
+      color: white;
+      text-shadow:
+        1px 1px 0 #000,
+        -1px -1px 0 #000,
+        1px -1px 0 #000,
+        -1px 1px 0 #000;
+    }
+
+    @media (min-width: 768px) {
+
+      /* For tablets and larger screens */
+      #eat1 {
+        transform: translate(-0%, -170%);
+      }
+    }
+
+    @media (max-width: 768px) {
+
+      /* For tablet */
+      #eat1 {
+        transform: translate(-0%, -200%);
+      }
+
+      .button-container {
+        top: 35rem;
+      }
+    }
+
+    @media (max-width: 320px) {
+
+      /* For phones and smaller screens */
+      #eat1 {
+        transform: translate(-0%, -210%);
+      }
+
+      .button-container {
+        top: 36rem;
+      }
+    }
+  </style>
 </head>
 
-<body>
-  <audio src="../resources/restaurant.mp3" id="audio" loop="loop" autoplay="autoplay" type="audio/mpeg"></audio>
-  <div class="topmenu">
-    <span class="span" style="font-size: 30px; cursor: pointer" onclick="disableMute()"><img src="../img/ikon/audio.png"
-        alt="audio" width="20px" /></span>
+<body class="bg-black text-white font-sans">
+  <audio src="../../resources/restaurant.mp3" id="audio" loop autoplay></audio>
+
+
+  <div class="topmenu flex items-center justify-between p-4 bg-black">
+    <button class="focus:outline-none" onclick="disableMute()">
+      <img src="../../img/ikon/audio.png" alt="audio" class="w-6">
+    </button>
   </div>
-  <div class="gamenav">
-    <img class="paw" src="../img/paw.png" alt="paw" />
-    <h1>GotchaLife</h1>
 
-    <div id="container">
-      <div class="bar-container">
+  <div class="bg-black text-center text-white h-96">
+    <div class="flex flex-col items-center text-center space-y-5">
+      <img class="w-12 mt-8" src="../../img/paw.png" alt="paw" />
+      <h1 class="text-4xl font-bold">VinciGotchi</h1>
+    </div>
+
+    <div id="container" class="flex flex-col items-center justify-center h-[25vh] bg-black my-5">
+      <div class="bar-container flex items-center justify-center w-[300px] mb-5">
         <div class="bar-ikon">
-          <img src="../img/ikon/eat1.png" alt="ikon" width="26px" />
+          <img src="../../img/ikon/eat1.png" alt="ikon" class="w-6" />
         </div>
-        <div class="bar-label">Hunger</div>
-        <div class="bar-wrapper">
-          <div id="eat-bar" class="bar"></div>
+        <div class="bar-label text-lg text-right mr-5 w-[80px]">Hunger</div>
+        <div class="bar-wrapper w-[200px] h-5 bg-white rounded-lg overflow-hidden">
+          <div id="eat-bar" class="bar h-full bg-[#00bfff]"></div>
         </div>
       </div>
-      <div class="bar-container">
+      <div class="bar-container flex items-center justify-center w-[300px] mb-5">
         <div class="bar-ikon">
-          <img src="../img/ikon/sleep.png" alt="ikon" width="26px" />
+          <img src="../../img/ikon/sleep.png" alt="ikon" class="w-6" />
         </div>
-        <div class="bar-label">Sleep</div>
-        <div class="bar-wrapper">
-          <div id="sleep-bar" class="bar"></div>
+        <div class="bar-label text-lg text-right mr-5 w-[80px]">Sleep</div>
+        <div class="bar-wrapper w-[200px] h-5 bg-white rounded-lg overflow-hidden">
+          <div id="sleep-bar" class="bar h-full bg-[#4b0a81]"></div>
         </div>
       </div>
-      <div class="bar-container">
+      <div class="bar-container flex items-center justify-center w-[300px] mb-5">
         <div class="bar-ikon">
-          <img src="../img/ikon/ply.png" alt="ikon" width="26px" />
+          <img src="../../img/ikon/ply.png" alt="ikon" class="w-6" />
         </div>
-        <div class="bar-label">Play</div>
-        <div class="bar-wrapper">
-          <div id="play-bar" class="bar"></div>
+        <div class="bar-label text-lg text-right mr-5 w-[80px]">Play</div>
+        <div class="bar-wrapper w-[200px] h-5 bg-white rounded-lg overflow-hidden">
+          <div id="play-bar" class="bar h-full bg-[#eaf73c]"></div>
         </div>
       </div>
-      <div class="bar-container">
+      <div class="bar-container flex items-center justify-center w-[300px] mb-5">
         <div class="bar-ikon">
-          <img src="../img/ikon/medi.jpg" alt="ikon" width="26px" />
+          <img src="../../img/ikon/medi.jpg" alt="ikon" class="w-6" />
         </div>
-        <div class="bar-label">Health</div>
-        <div class="bar-wrapper">
-          <div id="medicine-bar" class="bar"></div>
+        <div class="bar-label text-lg text-right mr-5 w-[80px]">Health</div>
+        <div class="bar-wrapper w-[200px] h-5 bg-white rounded-lg overflow-hidden">
+          <div id="medicine-bar" class="bar h-full bg-[#04eb36]"></div>
         </div>
       </div>
     </div>
 
-    <img id="image_eat" src="../img/main_bg/restaurant.jpg" alt="image" width="100%" />
+    <img id="image_eat" src="../../img/main_bg/restaurant.jpg" alt="restaraunt" class="w-full" />
 
-    <div class="button-container" id="eat-btn">
-      <img src="../img/food_icon/cabbage.png" alt="cabbage" style="cursor: pointer" width="8%"
-        onclick="changeImage7()" />
-      <img src="../img/food_icon/carrot.png" alt="carrot" style="cursor: pointer" width="8%" onclick="changeImage7()" />
-      <img src="../img/food_icon/pizza.png" alt="pizza" width="8%" style="cursor: pointer" onclick="changeImage7()" />
-      <img src="../img/food_icon/tomato.png" alt="tomato" width="8%" style="cursor: pointer" onclick="changeImage7()" />
-
-      <div hidden>
-        <button id="sleep-btn">Sleep</button>
-        <button id="play-btn">Play</button>
-        <button id="medicine-btn">Medicine</button>
-      </div>
+    <div class="button-container flex justify-center mt-5">
+      <button class="bg-transparent border-0 p-0 w-1/12 cursor-pointer focus:outline-none" onclick="changeImage()"
+        onkeypress="handleKeyPress(event)">
+        <img src="../../img/food_icon/cabbage.png" alt="cabbage" class="w-full" />
+      </button>
+      <button class="bg-transparent border-0 p-0 w-1/12 cursor-pointer focus:outline-none" onclick="changeImage()"
+        onkeypress="handleKeyPress(event)">
+        <img src="../../img/food_icon/carrot.png" alt="carrot" class="w-full" />
+      </button>
+      <button class="bg-transparent border-0 p-0 w-1/12 cursor-pointer focus:outline-none" onclick="changeImage()"
+        onkeypress="handleKeyPress(event)">
+        <img src="../../img/food_icon/pizza.png" alt="pizza" class="w-full" />
+      </button>
+      <button class="bg-transparent border-0 p-0 w-1/12 cursor-pointer focus:outline-none" onclick="changeImage()"
+        onkeypress="handleKeyPress(event)">
+        <img src="../../img/food_icon/tomato.png" alt="tomato" class="w-full" />
+      </button>
     </div>
-    <a href="game.html">
-      <button class="whitebuttongame">
-        < Game Menu</button></a>
-    <div class="eat1">
-      <center>
-        <h2 id="nama_pet"></h2>
-        <img src="../img/character4/shime1.png" alt="eat1" width="15%" id="shime1" />
-      </center>
+
+    <a href="./game.html" class="inline-block mt-5 md:mb-5">
+      <button class="bg-white text-black rounded-full px-6 py-2">Game Menu</button>
+    </a>
+
+    <div id="eat1" class="transform text-center">
+      <h2 id="nama_pet" class="text-outline text-xl font-semibold md:text-3xl">pet name</h2>
+      <img src="../../img/character4/shime1.png" alt="eat1" class="w-1/6 mx-auto" id="character" />
     </div>
   </div>
-  <script src="../script/game.js"></script>
+
+  <script src="../../js/character4/eating.js"></script>
 </body>
 
 </html>
