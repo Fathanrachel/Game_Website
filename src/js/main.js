@@ -10,11 +10,6 @@ const SESSION_STORAGE_KEYS = {
   PLAY_BAR: "playBar",
 };
 
-// Functions for audio controls
-window.onload = () => {
-  document.getElementById("audio").play();
-};
-
 const enableMute = () => document.getElementById("audio").pause();
 const disableMute = () => document.getElementById("audio").play();
 
@@ -66,3 +61,7 @@ const plusSlides = (n) => slideShow((mainSlide += n));
 const currentSlide = (n) => slideShow((mainSlide = n));
 
 slideShow(mainSlide);
+// Functions for audio controls
+window.onload = () => {
+  document.getElementById("audio").play();
+};

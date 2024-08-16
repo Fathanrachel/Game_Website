@@ -6,6 +6,7 @@
   <title>VinciGochi</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="manifest" href="./manifest.json">
   <style>
     .button-container {
       position: absolute;
@@ -75,6 +76,8 @@
         onkeydown="if (event.key === 'Enter') resetBar();">Reset Stats</button>
       <button class="text-3xl focus:outline-none" onclick="resetLevel()"
         onkeydown="if (event.key === 'Enter') resetLevel();">Reset Level</button>
+      <button class="text-3xl focus:outline-none" onclick="backToMenu()"
+        onkeydown="if (event.key === 'Enter') backToMenu();">Back To Menu</button>
     </div>
   </div>
 
@@ -87,7 +90,7 @@
 
   <div class="gamenav flex flex-col items-center text-center space-y-8">
     <img src="../../img/paw.png" alt="paw" class="w-12 mt-8">
-    <h1 class="text-4xl">VinchiGochi</h1>
+    <h1 class="text-4xl">VinciGochi</h1>
 
     <div id="container" class="flex flex-col items-center space-y-8 bg-black h-40">
       <div class="bar-container flex items-center justify-center w-72">

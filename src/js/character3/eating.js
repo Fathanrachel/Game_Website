@@ -18,19 +18,21 @@ function updateBars() {
   }
 }
 
+eatBar = parseInt(sessionStorage.getItem("eatBar"));
+medicineBar = parseInt(sessionStorage.getItem("medicineBar"));
+sleepBar = parseInt(sessionStorage.getItem("sleepBar"));
+playBar = parseInt(sessionStorage.getItem("playBar"));
+
 //VARIABLES
-let eatBar = parseInt(sessionStorage.getItem("eatBar"));
-let medicineBar = parseInt(sessionStorage.getItem("medicineBar"));
-let sleepBar = parseInt(sessionStorage.getItem("sleepBar"));
-let playBar = parseInt(sessionStorage.getItem("playBar"));
-const nama = localStorage.getItem("nama");
+let nama = localStorage.getItem("nama");
 let gambar = localStorage.getItem("gambar");
 document.getElementById("nama_pet").innerHTML = nama;
 let img = document.getElementById("character");
+// document.getElementById("character").src = gambar;
 
 // Animation for eating and sleeping
-const originalImage = "../../img/character1/shime1.png";
-const newImage = "../../img/character1/shime45.png";
+let originalImage = "../../img/character3/shime1.png";
+let newImage = "../../img/character3/shime35.png";
 
 // Update the game state every second
 setInterval(function () {
@@ -48,38 +50,31 @@ function delay(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-function revertImage() {
-  img.src = originalImage;
-}
-
 async function changeImage() {
   img.src = newImage;
   await delay(3000);
-  medicine();
+  eat();
   revertImage();
 }
 
-function medicine() {
-  medicineBar += 10;
+// add bar eat 10 and helath 5
+function eat() {
+  eatBar += 10;
+  if (eatBar > 100) {
+    eatBar = 100;
+  }
+  medicineBar += 5;
   if (medicineBar > 100) {
     medicineBar = 100;
   }
-
-  playBar -= 10;
-  if (playBar < 0) {
-    playBar = 0;
-  }
-
-  sleepBar -= 10;
-  if (sleepBar < 0) {
-    sleepBar = 0;
-  }
-
   // save to session storage
-  sessionStorage.setItem("sleepBar", sleepBar.toString());
-  sessionStorage.setItem("medicineBar", medicineBar.toString());
-  sessionStorage.setItem("playBar", playBar.toString());
+  sessionStorage.setItem("eatBar", eatBar);
+  sessionStorage.setItem("medicineBar", medicineBar);
   updateBars();
+}
+
+function revertImage() {
+  img.src = originalImage;
 }
 
 // FUNCTIONS

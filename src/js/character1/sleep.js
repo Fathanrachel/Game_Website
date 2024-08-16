@@ -14,7 +14,7 @@ function updateBars() {
 
   if (Lose > 0) {
     alert("You Lose!");
-    window.location.href = "../../index.html";
+    window.location.href = "/index.html";
   }
 }
 
