@@ -3,103 +3,120 @@
 
 <head>
   <meta charset="UTF-8">
+  <title>VinciGochi</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="shortcut icon" href="../../img/paw.ico" type="image/x-icon">
-  <title>VinciGochi</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="manifest" href="./manifest.json">
   <style>
     .text-outline {
+      position: relative;
       font-weight: bold;
       color: white;
-      text-shadow: 1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;
+      text-shadow:
+        1px 1px 0 #000,
+        -1px -1px 0 #000,
+        1px -1px 0 #000,
+        -1px 1px 0 #000;
     }
 
-    @media (min-width: 768px) {
-      #medicine {
-        transform: translate(0%, -180%);
-      }
+    /* Keep the container centered on the screen */
+    .container {
+      position: absolute;
+      top: 80%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
     }
 
+    /* Ensure the buttons are spaced evenly below the character */
+    .button-container {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    /* Adjustments for smaller screens */
     @media (max-width: 768px) {
-      #medicine {
-        transform: translate(0%, -290%);
+      .container {
+        top: 80%;
       }
-    }
 
-    @media (max-width: 320px) {
-      #medicine {
-        transform: translate(0%, -335%);
+      .button-container {
+        margin-top: 50px;
       }
     }
   </style>
 </head>
 
-<body class="bg-black text-white font-sans">
-  <audio src="../../resources/medicine.mp3" id="audio" loop autoplay class="hidden"></audio>
-
-  <div class="flex justify-end p-4">
-    <button onclick="disableMute()" class="focus:outline-none">
-      <img src="../../img/ikon/audio.png" alt="Toggle audio" class="w-5 h-5" />
+<body class="bg-black text-white font-sans h-screen">
+  <div class="topmenu flex items-center justify-between p-4 bg-black">
+    <audio src="../../resources/medicine.mp3" id="audio" loop autoplay class="hidden"></audio>
+    <button class="text-3xl focus:outline-none"><a href="./game.html">
+        < </a></button>
+    <div class="flex">
+      <img src="../../img/paw.png" alt="paw" class="w-6 h-6 md:w-12 md:h-12 mr-3">
+      <h1 class="text-xl md:text-4xl">VinciGochi</h1>
+    </div>
+    <button class="focus:outline-none" onclick="disableMute()">
+      <img src="../../img/ikon/audio.png" alt="audio" class="w-6">
     </button>
   </div>
 
-  <div class="text-center h-96">
-    <img src="../../img/paw.png" alt="Paw" class="mx-auto w-16 mb-4">
-    <h1 class="text-2xl md:text-3xl font-bold">VinciGochi</h1>
-
-    <div id="container" class="flex flex-col items-center justify-center h-[40vh] bg-black mt-6">
-      <!-- Bar 1 -->
-      <div class="flex items-center justify-center w-72 mb-4">
-        <img src="../../img/ikon/eat1.png" alt="ikon" class="w-6 mr-4">
-        <div class="w-20 text-right text-lg mr-4">Hunger</div>
-        <div class="w-48 h-5 bg-gray-300 rounded-lg overflow-hidden">
-          <div id="eat-bar" class="bg-blue-500 h-full"></div>
+  <div class="absolute w-full bg-black md:bg-transparent md:py-8 md:px-11 md:flex md:justify-between">
+    <div class="space-y-3 ml-2 md:ml-1 md:bg-black p-5 md:rounded-lg mx-auto md:mx-0 w-full max-w-md">
+      <div class="bar-container flex items-center justify-center w-full md:w-72">
+        <img src="../../img/ikon/eat1.png" alt="ikon" class="w-6">
+        <div class="bar-label text-right text-lg w-20 mr-4">Hunger</div>
+        <div class="bar-wrapper w-48 h-5 bg-white rounded-lg overflow-hidden">
+          <div id="eat-bar" class="bar h-full bg-blue-500"></div>
         </div>
       </div>
-      <!-- Bar 2 -->
-      <div class="flex items-center justify-center w-72 mb-4">
-        <img src="../../img/ikon/sleep.png" alt="ikon" class="w-6 mr-4">
-        <div class="w-20 text-right text-lg mr-4">Sleep</div>
-        <div class="w-48 h-5 bg-gray-300 rounded-lg overflow-hidden">
-          <div id="sleep-bar" class="bg-purple-700 h-full"></div>
+      <div class="bar-container flex items-center justify-center w-full md:w-72">
+        <img src="../../img/ikon/sleep.png" alt="ikon" class="w-6">
+        <div class="bar-label text-right text-lg w-20 mr-4">Sleep</div>
+        <div class="bar-wrapper w-48 h-5 bg-white rounded-lg overflow-hidden">
+          <div id="sleep-bar" class="bar h-full bg-purple-700"></div>
         </div>
       </div>
-      <!-- Bar 3 -->
-      <div class="flex items-center justify-center w-72 mb-4">
-        <img src="../../img/ikon/ply.png" alt="ikon" class="w-6 mr-4">
-        <div class="w-20 text-right text-lg mr-4">Play</div>
-        <div class="w-48 h-5 bg-gray-300 rounded-lg overflow-hidden">
-          <div id="play-bar" class="bg-yellow-400 h-full"></div>
+      <div class="bar-container flex items-center justify-center w-full md:w-72">
+        <img src="../../img/ikon/ply.png" alt="ikon" class="w-6">
+        <div class="bar-label text-right text-lg w-20 mr-4">Play</div>
+        <div class="bar-wrapper w-48 h-5 bg-white rounded-lg overflow-hidden">
+          <div id="play-bar" class="bar h-full bg-yellow-400"></div>
         </div>
       </div>
-      <!-- Bar 4 -->
-      <div class="flex items-center justify-center w-72 mb-4">
-        <img src="../../img/ikon/medi.jpg" alt="ikon" class="w-6 mr-4">
-        <div class="w-20 text-right text-lg mr-4">Health</div>
-        <div class="w-48 h-5 bg-gray-300 rounded-lg overflow-hidden">
-          <div id="medicine-bar" class="bg-green-500 h-full"></div>
+      <div class="bar-container flex items-center justify-center w-full md:w-72">
+        <img src="../../img/ikon/medi.jpg" alt="ikon" class="w-6">
+        <div class="bar-label text-right text-lg w-20 mr-4">Health</div>
+        <div class="bar-wrapper w-48 h-5 bg-white rounded-lg overflow-hidden">
+          <div id="medicine-bar" class="bar h-full bg-green-500"></div>
         </div>
+      </div>
+      <div class="flex items-center justify-center">
+        <button onclick="changeImage()" class="w-12 mr-3 p-2 hover:bg-blue-300 rounded transition-all duration-200">
+          <img src="../../img/ikon/pill.png" alt="Bed" />
+        </button>
+        <h4 class="text-xl md:text-2xl font-mono">Click to give Medicine</h4>
       </div>
     </div>
+  </div>
 
-    <img id="image_hospital" src="../../img/main_bg/hospital.jpg" alt="hospital" class="w-full h-auto my-6">
+  <div class="container">
+    <h2 id="nama_pet" class="text-outline text-xl font-semibold md:text-3xl">pet name</h2>
+    <img src="../../img/character2/shime1.png" id="character" alt="Character Walking" class="w-24 md:w-40 mx-auto">
 
-    <div class="flex justify-center mt-4">
-      <button id="medicine-btn" onclick="changeImage()" class="p-2 hover:bg-blue-300 rounded">
-        <img src="../../img/ikon/pill.png" alt="medicine" class="w-10">
-      </button>
-    </div>
+  </div>
+  <img id="image" src="../../img/main_bg/hospital.jpg" alt="pikachu"
+    class="absolute top-0 left-0 w-full h-full object-cover z-[-1]">
 
-    <a href="./game.html" class="mt-6 inline-block">
-      <button class="px-8 py-2 bg-white text-black rounded-full hover:bg-gray-200 transition-all duration-200 md:mb-5">
-        Game Menu
-      </button>
-    </a>
-
-    <div id="medicine" class="mt-6">
-      <h2 id="nama_pet" class="text-outline text-2xl">nama pet</h2>
-      <img id="character" src="../../img/character2/shime1.png" alt="medicine1" class="mx-auto w-1/6">
+  <div class="hidden">
+    <div class="button-container flex justify-center space-x-4">
+      <button id="eat-btn" class="bg-blue-500 text-white rounded-full px-6 py-2">Eat</button>
+      <button id="sleep-btn" class="bg-purple-700 text-white rounded-full px-6 py-2">Sleep</button>
+      <button id="play-btn" class="bg-yellow-400 text-white rounded-full px-6 py-2">Play</button>
+      <button id="medicine-btn" class="bg-green-500 text-white rounded-full px-6 py-2">Medicine</button>
     </div>
   </div>
 
