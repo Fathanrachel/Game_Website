@@ -5,31 +5,11 @@
   <meta charset="UTF-8">
   <title>VinciGochi</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="shortcut icon" href="../../img/paw.ico" type="image/x-icon">
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="shortcut icon" href="../../img/paw.ico" type="image/x-icon">
   <link rel="manifest" href="./manifest.json">
   <style>
-    .button-container {
-      position: relative;
-      bottom: 0;
-      /* top: auto; */
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      justify-content: center;
-      width: 100%;
-      padding: 10px 0;
-      z-index: 100;
-      background-color: rgba(0, 0, 0, 0.5);
-    }
-
-    .button-container button{
-      flex: 1 1 24%;
-      max-width: 60px;
-      margin: 0 5px;
-    }
-
-    .text-outline {
+.text-outline {
       position: relative;
       font-weight: bold;
       color: white;
@@ -40,95 +20,87 @@
         -1px 1px 0 #000;
     }
 
-    @media (min-width: 768px) {
-
-      /* For tablets and larger screens */
-      #eat1 {
-        transform: translate(-0%, -170%);
-      }
+    /* Keep the container centered on the screen */
+    .container {
+      position: absolute;
+      top: 80%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
     }
 
+    /* Ensure the buttons are spaced evenly below the character */
+    .button-container {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    /* Adjustments for smaller screens */
     @media (max-width: 768px) {
-
-      /* For tablet */
-      #eat1 {
-        transform: translate(-0%, -200%);
-      }
-    }
-
-    @media (max-width: 320px) {
-
-      /* For phones and smaller screens */
-      #eat1 {
-        transform: translate(-0%, -210%);
+      .container {
+        top: 80%;
       }
 
-      .button-container button{
-        flex: 1 1 30%;
-        max-width: 45px;
+      .button-container {
+        margin-top: 50px;
       }
     }
   </style>
 </head>
 
-<body class="bg-black text-white font-sans">
-  <audio src="../../resources/restaurant.mp3" id="audio" loop autoplay></audio>
-
-
+<body class="bg-black text-white font-sans h-screen">
   <div class="topmenu flex items-center justify-between p-4 bg-black">
+    <audio src="../../resources/restaurant.mp3" id="audio" loop autoplay class="hidden"></audio>
+    <button class="text-3xl focus:outline-none"><a href="./game.html">
+        < </a></button>
+    <div class="flex">
+      <img src="../../img/paw.png" alt="paw" class="w-6 h-6 md:w-12 md:h-12 mr-3">
+      <h1 class="text-xl md:text-4xl">VinciGochi</h1>
+    </div>
     <button class="focus:outline-none" onclick="disableMute()">
       <img src="../../img/ikon/audio.png" alt="audio" class="w-6">
     </button>
   </div>
 
-  <div class="bg-black text-center text-white h-96">
-    <div class="flex flex-col items-center text-center space-y-5">
-      <img class="w-12 mt-8" src="../../img/paw.png" alt="paw" />
-      <h1 class="text-4xl font-bold">VinciGotchi</h1>
-    </div>
-
-    <div id="container" class="flex flex-col items-center justify-center h-[25vh] bg-black my-5">
-      <div class="bar-container flex items-center justify-center w-[300px] mb-5">
-        <div class="bar-ikon">
-          <img src="../../img/ikon/eat1.png" alt="ikon" class="w-6" />
-        </div>
-        <div class="bar-label text-lg text-right mr-5 w-[80px]">Hunger</div>
-        <div class="bar-wrapper w-[200px] h-5 bg-white rounded-lg overflow-hidden">
-          <div id="eat-bar" class="bar h-full bg-[#00bfff]"></div>
+  <div class="absolute w-full bg-black md:bg-transparent md:py-8 md:px-11 md:flex md:justify-between">
+    <div class="space-y-3 ml-2 md:ml-1 md:bg-black p-5 md:rounded-lg mx-auto md:mx-0 w-full max-w-md">
+      <div class="bar-container flex items-center justify-center w-full md:w-72">
+        <img src="../../img/ikon/eat1.png" alt="ikon" class="w-6">
+        <div class="bar-label text-right text-lg w-20 mr-4">Hunger</div>
+        <div class="bar-wrapper w-48 h-5 bg-white rounded-lg overflow-hidden">
+          <div id="eat-bar" class="bar h-full bg-blue-500"></div>
         </div>
       </div>
-      <div class="bar-container flex items-center justify-center w-[300px] mb-5">
-        <div class="bar-ikon">
-          <img src="../../img/ikon/sleep.png" alt="ikon" class="w-6" />
-        </div>
-        <div class="bar-label text-lg text-right mr-5 w-[80px]">Sleep</div>
-        <div class="bar-wrapper w-[200px] h-5 bg-white rounded-lg overflow-hidden">
-          <div id="sleep-bar" class="bar h-full bg-[#4b0a81]"></div>
+      <div class="bar-container flex items-center justify-center w-full md:w-72">
+        <img src="../../img/ikon/sleep.png" alt="ikon" class="w-6">
+        <div class="bar-label text-right text-lg w-20 mr-4">Sleep</div>
+        <div class="bar-wrapper w-48 h-5 bg-white rounded-lg overflow-hidden">
+          <div id="sleep-bar" class="bar h-full bg-purple-700"></div>
         </div>
       </div>
-      <div class="bar-container flex items-center justify-center w-[300px] mb-5">
-        <div class="bar-ikon">
-          <img src="../../img/ikon/ply.png" alt="ikon" class="w-6" />
-        </div>
-        <div class="bar-label text-lg text-right mr-5 w-[80px]">Play</div>
-        <div class="bar-wrapper w-[200px] h-5 bg-white rounded-lg overflow-hidden">
-          <div id="play-bar" class="bar h-full bg-[#eaf73c]"></div>
+      <div class="bar-container flex items-center justify-center w-full md:w-72">
+        <img src="../../img/ikon/ply.png" alt="ikon" class="w-6">
+        <div class="bar-label text-right text-lg w-20 mr-4">Play</div>
+        <div class="bar-wrapper w-48 h-5 bg-white rounded-lg overflow-hidden">
+          <div id="play-bar" class="bar h-full bg-yellow-400"></div>
         </div>
       </div>
-      <div class="bar-container flex items-center justify-center w-[300px] mb-5">
-        <div class="bar-ikon">
-          <img src="../../img/ikon/medi.jpg" alt="ikon" class="w-6" />
-        </div>
-        <div class="bar-label text-lg text-right mr-5 w-[80px]">Health</div>
-        <div class="bar-wrapper w-[200px] h-5 bg-white rounded-lg overflow-hidden">
-          <div id="medicine-bar" class="bar h-full bg-[#04eb36]"></div>
+      <div class="bar-container flex items-center justify-center w-full md:w-72">
+        <img src="../../img/ikon/medi.jpg" alt="ikon" class="w-6">
+        <div class="bar-label text-right text-lg w-20 mr-4">Health</div>
+        <div class="bar-wrapper w-48 h-5 bg-white rounded-lg overflow-hidden">
+          <div id="medicine-bar" class="bar h-full bg-green-500"></div>
         </div>
       </div>
     </div>
+  </div>
 
-    <img id="image_eat" src="../../img/main_bg/restaurant.jpg" alt="restaraunt" class="w-full" />
-
-    <div class="button-container flex justify-center mt-4">
+  <div class="container">
+    <h2 id="nama_pet" class="text-outline text-xl font-semibold md:text-3xl">pet name</h2>
+    <img src="../../img/character2/shime1.png" id="character" alt="Character Walking" class="w-24 md:w-40 mx-auto">
+    <div class="button-container">
       <button class="bg-transparent border-0 p-0 w-1/12 cursor-pointer focus:outline-none" onclick="changeImage()"
         onkeypress="handleKeyPress(event)">
         <img src="../../img/food_icon/cabbage.png" alt="cabbage" class="w-full" />
@@ -146,14 +118,16 @@
         <img src="../../img/food_icon/tomato.png" alt="tomato" class="w-full" />
       </button>
     </div>
+  </div>
+  <img id="image" src="../../img/main_bg/restaurant.jpg" alt="pikachu"
+    class="absolute top-0 left-0 w-full h-full object-cover z-[-1]">
 
-    <a href="./game.html" class="inline-block mt-5 md:mb-5">
-      <button class="bg-white text-black rounded-full px-6 py-2">Game Menu</button>
-    </a>
-
-    <div id="eat1" class="transform text-center">
-      <h2 id="nama_pet" class="text-outline text-xl font-semibold md:text-3xl">pet name</h2>
-      <img src="../../img/character2/shime1.png" alt="eat1" class="w-1/6 mx-auto absolute inset-5" id="character" />
+  <div class="hidden">
+    <div class="button-container flex justify-center space-x-4">
+      <button id="eat-btn" class="bg-blue-500 text-white rounded-full px-6 py-2">Eat</button>
+      <button id="sleep-btn" class="bg-purple-700 text-white rounded-full px-6 py-2">Sleep</button>
+      <button id="play-btn" class="bg-yellow-400 text-white rounded-full px-6 py-2">Play</button>
+      <button id="medicine-btn" class="bg-green-500 text-white rounded-full px-6 py-2">Medicine</button>
     </div>
   </div>
 
