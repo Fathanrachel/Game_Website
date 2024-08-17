@@ -9,18 +9,22 @@
   <link rel="manifest" href="./manifest.json">
   <style>
     .button-container {
-      position: absolute;
-      top: 83rem;
+      position: relative;
+      bottom: 0;
+      /* top: auto; */
       left: 50%;
       transform: translateX(-50%);
       display: flex;
       justify-content: center;
       width: 100%;
+      padding: 10px 0;
+      z-index: 100;
+      background-color: rgba(0, 0, 0, 0.5);
     }
 
     .button-container button{
-      flex: 1 1 20%;
-      max-width: 80px;
+      flex: 1 1 24%;
+      max-width: 60px;
       margin: 0 5px;
     }
 
@@ -49,16 +53,6 @@
       #eat1 {
         transform: translate(-0%, -200%);
       }
-
-      .button-container {
-        bottom: 10%;
-        top: 55rem;
-      }
-
-      .button-container button{
-        flex: 1 1 24%;
-        max-width: 60px;
-      }
     }
 
     @media (max-width: 320px) {
@@ -66,11 +60,6 @@
       /* For phones and smaller screens */
       #eat1 {
         transform: translate(-0%, -210%);
-      }
-
-      .button-container {
-        bottom: 12%;
-        top: 40rem;
       }
 
       .button-container button{
@@ -163,7 +152,7 @@
 
     <div id="eat1" class="transform text-center">
       <h2 id="nama_pet" class="text-outline text-xl font-semibold md:text-3xl">pet name</h2>
-      <img src="../../img/character2/shime1.png" alt="eat1" class="w-1/6 mx-auto" id="character" />
+      <img src="../../img/character2/shime1.png" alt="eat1" class="w-1/6 mx-auto absolute inset-5" id="character" />
     </div>
   </div>
 
